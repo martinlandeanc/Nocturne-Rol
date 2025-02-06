@@ -16,15 +16,69 @@ html, body {
     min-height: 100%;
 }
 
-/* Navegación */
+/* Nueva barra de navegación con efecto glassmorphism */
 nav {
-    background: linear-gradient(90deg, #7A1F3D, #2E4756);
-    padding: 15px;
-    position: sticky;
+    position: fixed;
     top: 0;
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(10, 10, 10, 0.6); /* Transparencia oscura */
+    backdrop-filter: blur(10px); /* Difuminado tipo glassmorphism */
+    border-bottom: 3px solid rgba(201, 162, 39, 0.8); /* Borde dorado */
     z-index: 1000;
-    border-bottom: 3px solid #C9A227;
+    transition: 0.3s ease-in-out;
 }
+
+/* Estilo de los enlaces en la navegación */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+nav ul li a {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    color: #EAEAEA; /* Texto claro */
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: 0.3s;
+    position: relative;
+}
+
+/* Resaltado de la opción activa */
+nav ul li a:hover,
+nav ul li a.active {
+    color: #C9A227; /* Dorado */
+    text-shadow: 0px 0px 10px rgba(201, 162, 39, 0.7);
+}
+
+/* Línea iluminada bajo la opción activa */
+nav ul li a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    width: 0%;
+    height: 3px;
+    background: #C9A227;
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Suavizar la transición al hacer scroll */
+.nav-oculta {
+    top: -80px;
+}
+
 
 nav ul {
     list-style: none;
@@ -169,3 +223,106 @@ footer {
     color: #EAEAEA;
     box-shadow: 0px 0px 10px #C9A227;
 }
+
+/* Efecto de desvanecimiento en el botón */
+#boton-explorar {
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Ocultar barra de navegación temporalmente */
+header nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    transition: top 0.5s ease-in-out;
+}
+
+
+/* Footer mejorado */
+footer {
+    background: #111; /* Fondo oscuro elegante */
+    color: #EAEAEA; /* Texto claro */
+    padding: 20px;
+    text-align: center;
+    border-top: 3px solid #C9A227; /* Línea dorada arriba */
+    font-size: 14px;
+}
+
+/* Enlaces en el footer */
+.footer-links a {
+    color: #C9A227; /* Dorado */
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #7A1F3D; /* Borgoña */
+    text-shadow: 0px 0px 10px #C9A227;
+}
+
+/* Enlace de contacto */
+footer a {
+    color: #C9A227;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+footer a:hover {
+    color: #7A1F3D;
+    text-shadow: 0px 0px 10px #C9A227;
+}
+
+
+/* Fondo Parallax para Blog */
+#fondo-parallax-blog {
+    background: url('assets/blog-fondo.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Cubre toda la pantalla */
+    z-index: -1;
+    background-attachment: fixed; /* Efecto Parallax */
+}
+
+/* Recuadro oscuro con bordes iluminados para los artículos */
+.articulo {
+    background: rgba(0, 0, 0, 0.8); /* Fondo oscuro semitransparente */
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid rgba(201, 162, 39, 0.8); /* Borde dorado */
+    box-shadow: 0px 0px 15px rgba(201, 162, 39, 0.5); /* Resplandor sutil */
+    max-width: 80%;
+    margin: 20px auto;
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Títulos de los artículos */
+.articulo h3 {
+    font-family: 'Cinzel', serif;
+    color: #C9A227; /* Dorado */
+    text-shadow: 0px 0px 10px rgba(201, 162, 39, 0.7);
+}
+
+/* Texto de los artículos */
+.articulo p {
+    color: #EAEAEA;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+/* Animación de Fade-In */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

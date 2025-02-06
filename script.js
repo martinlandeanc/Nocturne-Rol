@@ -49,7 +49,7 @@ const textoBienvenida = `Las sombras se alzan y los ecos de antiguas leyendas re
 Has cruzado el umbral de Nocturne Rol, un reino donde la imaginación no tiene límites y cada historia es un portal hacia lo inexplorado.
 Aquí, los valientes forjan su destino con palabras, los narradores tejen mundos con su voz y los aventureros encuentran su lugar entre los mitos.
 La elección es tuya: ¿Serás un guardián de relatos, un maestro del juego o un viajero en busca de conocimientos prohibidos?
-🔥 El viaje comienza ahora. ¿Estás listo para escribir tu propia leyenda?`;
+🔥 El viaje comienza ahora. ¿Estás listo para escribir tu propia historia?`;
 
 let i = 0;
 function escribirTexto() {
@@ -65,20 +65,22 @@ document.addEventListener("DOMContentLoaded", escribirTexto);
 
 
 // Ocultar la barra de navegación al hacer scroll hacia abajo y mostrarla al hacer scroll hacia arriba
+// Restaurar el efecto de ocultar la barra de navegación al hacer scroll
 let prevScrollPos = window.scrollY;
-const nav = document.querySelector("nav");
+const navBar = document.querySelector("header nav"); // Aseguramos que seleccione correctamente la barra
 
 window.addEventListener("scroll", () => {
     let currentScrollPos = window.scrollY;
 
     if (prevScrollPos > currentScrollPos) {
-        nav.classList.remove("nav-oculta"); // Mostrar barra
+        navBar.style.top = "0"; // Mostrar barra
     } else {
-        nav.classList.add("nav-oculta"); // Ocultar barra
+        navBar.style.top = "-100px"; // Ocultar barra
     }
 
     prevScrollPos = currentScrollPos;
 });
+
 
 // Botón que cambia automáticamente entre secciones
 const secciones = [
@@ -90,11 +92,34 @@ const secciones = [
 ];
 
 let indiceSeccion = 0;
+// Función para cambiar el botón con efecto de desvanecimiento
 function cambiarBoton() {
-    indiceSeccion = (indiceSeccion + 1) % secciones.length;
-    document.getElementById("boton-explorar").innerText = secciones[indiceSeccion].texto;
-    document.getElementById("boton-dinamico").href = secciones[indiceSeccion].link;
+    const boton = document.getElementById("boton-explorar");
+    const enlace = document.getElementById("boton-dinamico");
+
+    // Desvanecer antes de cambiar
+    boton.style.opacity = "0";
+
+    setTimeout(() => {
+        indiceSeccion = (indiceSeccion + 1) % secciones.length;
+        boton.innerText = secciones[indiceSeccion].texto;
+        enlace.href = secciones[indiceSeccion].link;
+
+        // Volver a mostrar suavemente
+        boton.style.opacity = "1";
+    }, 500); // Tiempo de transición (coincide con el CSS)
 }
+
 
 // Cambiar el botón cada 4 segundos
 setInterval(cambiarBoton, 4000);
+
+// Resaltar la opción activa en la barra de navegación
+document.addEventListener("DOMContentLoaded", () => {
+    const enlacesNav = document.querySelectorAll("nav ul li a");
+    enlacesNav.forEach(enlace => {
+        if (enlace.href === window.location.href) {
+            enlace.classList.add("active");
+        }
+    });
+});
