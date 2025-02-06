@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos - Nocturne Rol</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Cursos de Rol</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="tienda.html">Tienda</a></li>
+                <li><a href="suscripciones.html">Suscripciones</a></li>
+                <li><a href="cursos.html">Cursos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+        
+    </header>
+    <main>
+        
+            <h2>Aprende con nuestros cursos</h2>
+        
+            <div class="curso">
+                <h3>Curso de Creación de Personajes</h3>
+                <p>Aprende a desarrollar personajes profundos y carismáticos.</p>
+                <button onclick="inscribirseCurso('Creación de Personajes')">Inscribirse</button>
+            </div>
+        
+            <div class="curso">
+                <h3>Curso de Narración de Historias</h3>
+                <p>Domina el arte de contar historias envolventes.</p>
+                <button onclick="inscribirseCurso('Narración de Historias')">Inscribirse</button>
+            </div>
+        
+            <h2>Tu Progreso</h2>
+            <ul id="progreso-cursos"></ul>
+        </main>
+        
+    
+    <footer>
+        <p>&copy; 2025 Nocturne Rol</p>
+    </footer>
+
+    <script src="cursos.js"></script>
+    <script src="notificaciones.js"></script>
+
+
+</body>
+</html>
